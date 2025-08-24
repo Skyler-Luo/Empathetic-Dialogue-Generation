@@ -198,7 +198,7 @@ python interact.py --model EmpDG --cuda --label_smoothing --noam --emb_dim 300 -
 5. `05、模型训练与评估.ipynb`
 6. `06、调用模型进行对话.ipynb`
 
-## 📚 参考仓库
+## 📚 参考资料
 
 * [Transformers](https://github.com/huggingface/transformers)
 * [EmpatheticDialogues](https://github.com/facebookresearch/EmpatheticDialogues)

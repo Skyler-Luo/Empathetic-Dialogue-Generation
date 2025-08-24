@@ -1,7 +1,11 @@
 # Folders to ignore
-/datasets/
-/vectors/
-/results/
+/vectors/*
+!/vectors/readme.txt
+/results/*
+!/results/readme.txt
+!/results/tb_results/
+/results/tb_results/*
+!/results/tb_results/readme.txt
 /result/
 
 # Notebook checkpoints

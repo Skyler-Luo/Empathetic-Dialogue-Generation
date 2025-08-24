@@ -1,6 +1,6 @@
 # 🤖 Empathetic-Dialogue-Generation (RAICOM2025)
 
-✨ 本项目为**睿抗 2025 智海人工智能算法应用赛国赛**参赛项目，荣获**二等奖**。🌈
+🏆 本项目为**睿抗 2025 智海人工智能算法应用赛国赛**参赛项目，荣获**二等奖**。🎉
 
 ## 项目背景
 
@@ -34,6 +34,10 @@ pip install -r requirements.txt
 # 4. 检查 GPU 是否可用
 python utils/check_torch_gpu.py
 ```
+
+### 其他依赖
+
+从这里 [GloVe 向量](http://nlp.stanford.edu/data/glove.6B.zip) 下载 GloVe 向量并将其放入 /vectors/ 中。
 
 ## 📂 数据集说明
 
@@ -82,15 +86,15 @@ python utils/check_torch_gpu.py
 
 - **训练 EmoPrepend 模型** (推荐的基础模型):
   ```bash
-  python train.py --cuda --model EmoPrepend --pretrain_emb --pointer_gen
+  python train.py --cuda --label_smoothing --noam --emb_dim 300 --hidden_dim 300 --hop 1 --heads 2 --pretrain_emb --model EmoPrepend --device_id 0 --save_path results/tb_results/EmoPrepend/ --pointer_gen
   ```
 - **训练 Transformer 基础模型**:
   ```bash
-  python train.py --cuda --model Transformer --pretrain_emb --pointer_gen
+  python train.py --cuda --label_smoothing --noam --emb_dim 300 --hidden_dim 300 --hop 1 --heads 2 --pretrain_emb --model Transformer --device_id 0 --save_path results/tb_results/Transformer/ --pointer_gen
   ```
 - **训练 EmpDG_woD 模型** (仅生成器部分):
   ```bash
-  python train.py --cuda --model EmpDG_woD --pretrain_emb --pointer_gen
+  python train.py --cuda --label_smoothing --noam --emb_dim 300 --hidden_dim 300 --hop 1 --heads 2 --pretrain_emb --model EmpDG_woD --device_id 0 --save_path results/tb_results/EmpDG_woD/ --pointer_gen
   ```
 
 ### 🔹 对抗训练 (EmpDG)
@@ -103,14 +107,16 @@ python utils/check_torch_gpu.py
 
 - **运行完整的 EmpDG 对抗训练**:
   ```bash
-  python adver_train.py --cuda --model EmpDG --emotion_disc --pretrain_emb --pointer_gen
+  python3 adver_train.py --cuda --label_smoothing --noam --emb_dim 300 --rnn_hidden_dim 300 --hidden_dim 300 --hop 1 --heads 2 --emotion_disc --pretrain_emb --model EmpDG --device_id 0 --save_path results/tb_results/EmpDG/ --d_steps 1 --g_steps 5 --pointer_gen
   ```
 - **从断点恢复对抗训练**:
   ```bash
-  python adver_train.py --cuda --model EmpDG --emotion_disc --pretrain_emb --pointer_gen --resume_g --resume_d
+  python3 adver_train.py --cuda --label_smoothing --noam --emb_dim 300 --rnn_hidden_dim 300 --hidden_dim 300 --hop 1 --heads 2 --emotion_disc --pretrain_emb --model EmpDG --device_id 0 --save_path results/tb_results/EmpDG/ --d_steps 1 --g_steps 5 --pointer_gen --resume_g --resume_d
   ```
 
-训练日志与可视化结果将保存到 `results/`，模型权重存放在 `result/`。
+训练日志与可视化结果将保存到 `results/tb_results/`，模型权重存放在 `result/`。
+
+训练好的对抗模型权重可从[Google Drive](https://drive.google.com/drive/folders/1EIIZ9SFJCE1JavUal39J_NN2WxP5JK6H?usp=sharing)中获取，您可以下载并将其移动到 /result/ 下。
 
 ## 📊 模型评估
 

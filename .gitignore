@@ -1,0 +1,11 @@
+# Folders to ignore
+/datasets/
+/vectors/
+/results/
+/result/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# macOS specific
+.DS_Store

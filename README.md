@@ -168,7 +168,7 @@ python interact.py --model EmpDG --cuda --label_smoothing --noam --emb_dim 300 -
 | User  | i don't want to recall .                |
 | EmpDG | i am sorry , that is not a good thing . |
 
-## 📁 项目结构
+## 🗂️ 项目结构
 
 ```
 ├── Model/              # 模型实现 (EmpDG_G, EmpDG_D, Transformer)
